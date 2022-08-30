@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор матрасов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="/" data-get="/data.json" class="mcalc">
+    <h2 class="mcalc__title">Калькулятор матрасов</h2>
+    <div class="mcalc__grid">
+        <div class="mcalc__left">
+            <div class="mcalc__types" data-calc="selects">
+                <div class="mcalc__col" data-calc="col">
+                    <div class="mcalc__type">
+                        <label class="mcalc-type">
+                            <input type="radio"
+                                   name="type"
+                                   class="mcalc-type__input"
+                                   value="Стандарт"
+                                   checked
+                                   data-calc="type">
+                            <span class="mcalc-type__fake">
+                            <span class="mcalc-type__radio"></span>
+                            <span class="mcalc-type__name">Стандарт</span>
+                        </span>
+                        </label>
+                    </div>
+                    <div class="mcalc__sizes">
+                        <div class="mcalc__size">
+                            <div class="mcalc-size">
+                                <div class="mcalc-size__name">Ширина</div>
+                                <select name="width" class="mcalc-size__select" data-calc="selectWidth"></select>
+                            </div>
+                        </div>
+                        <div class="mcalc__sep">X</div>
+                        <div class="mcalc__size">
+                            <div class="mcalc-size">
+                                <div class="mcalc-size__name">Длина</div>
+                                <select name="lenght" class="mcalc-size__select" data-calc="selectLength"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mcalc__col" data-calc="col">
+                    <div class="mcalc__type">
+                        <label class="mcalc-type">
+                            <input type="radio"
+                                   name="type"
+                                   class="mcalc-type__input"
+                                   value="Нестандарт"
+                                   data-calc="type">
+                            <span class="mcalc-type__fake">
+                            <span class="mcalc-type__radio"></span>
+                            <span class="mcalc-type__name">Нестандарт (до 200*200)</span>
+                        </span>
+                        </label>
+                    </div>
+                    <div class="mcalc__sizes">
+                        <div class="mcalc__size">
+                            <div class="mcalc-size">
+                                <div class="mcalc-size__name">Ширина</div>
+                                <input type="number" min="60" max="200" class="mcalc-size__input"
+                                       data-calc="selectWidth">
+                            </div>
+                        </div>
+                        <div class="mcalc__sep">X</div>
+                        <div class="mcalc__size">
+                            <div class="mcalc-size">
+                                <div class="mcalc-size__name">Длина</div>
+                                <input type="number" min="60" max="200" class="mcalc-size__input"
+                                       data-calc="selectLength">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mcalc__composition" data-calc="composition">
+                <div class="mcalc__composition-covers">
+                    <div class="mcalc__element">
+                        <div class="mcalc-element" data-calc="cover">
+                            <div class="mcalc-element__type">Чехол:</div>
+                            <div class="mcalc-element__name" data-calc="coverName"></div>
+                            <div class="mcalc-element__price" data-calc="coverPrice"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sortable"
+                     class="mcalc__composition-layers"
+                     data-calc="layers">
+
+                </div>
+            </div>
+            <div class="mcalc__controls">
+                <button type="button" class="mcalc__reset btn btn-default grey" data-calc="reset">
+                    Сбросить
+                </button>
+                <button type="button" class="mcalc__add btn btn-default white" data-calc="addLayer">
+                    добавить слой
+                </button>
+            </div>
+        </div>
+        <div class="mcalc__right">
+            <div class="mcalc__render">
+                <div class="mcalc-render">
+                    <div class="mcalc-render__left">
+                        <div class="mcalc-render__top">
+                            <img src="/imgs/top.jpg" alt="">
+                        </div>
+                        <div class="mcalc-render__imgs" data-calc="imgs">
+
+                        </div>
+                        <div class="mcalc-render__bottom">
+                            <img src="/imgs/bottom.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="mcalc-render__right">
+                        <div class="mcalc-height">
+                            <div class="mcalc-height__size">
+                                <div class="mcalc-height__val">
+                                    0
+                                </div>
+                                <div class="mcalc-height__name">
+                                    ММ
+                                </div>
+                            </div>
+                            <div class="mcalc-height__arr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mcalc__total">
+                <div class="mcalc-total">
+                    <div class="mcalc-total__name">Итого</div>
+                    <div class="mcalc-total__val" data-calc="total">1320 ₽</div>
+                </div>
+            </div>
+            <div class="mcalc__btn">
+                <button type="submit"
+                        data-calc="submit"
+                        class="mcalc__submit btn btn-default animate-load"
+                        data-event="jqm"
+                        data-param-form_id="FEEDBACK"
+                        data-name="feedback">
+                    отправить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="size" value="">
+    <input type="hidden" name="cover" value="">
+    <input type="hidden" name="layers" value="">
+    <input type="hidden" name="total" value="">
+    <div class="mcalc__preloader active" data-calc="preloader">
+        <div class="mcalc__loader"></div>
+    </div>
+</form>
+
+<div class="mcalc-popup" data-covers="popup">
+    <div class="mcalc-popup__content mcalc-covers" data-popup="content">
+        <div class="mcalc-popup__close" data-popup="close">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.22566 4.81096C5.83514 4.42044 5.20197 4.42044 4.81145 4.81096C4.42092 5.20148 4.42092 5.83465 4.81145 6.22517L10.5862 11.9999L4.81151 17.7746C4.42098 18.1651 4.42098 18.7983 4.81151 19.1888C5.20203 19.5793 5.8352 19.5793 6.22572 19.1888L12.0004 13.4141L17.7751 19.1888C18.1656 19.5793 18.7988 19.5793 19.1893 19.1888C19.5798 18.7983 19.5798 18.1651 19.1893 17.7746L13.4146 11.9999L19.1893 6.22517C19.5799 5.83465 19.5799 5.20148 19.1893 4.81096C18.7988 4.42044 18.1657 4.42044 17.7751 4.81096L12.0004 10.5857L6.22566 4.81096Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="mcalc-covers__title">ВЫБОР ЧЕХЛА</div>
+        <div class="mcalc-covers__list" data-covers="list">
+
+        </div>
+    </div>
+</div>
+<div class="mcalc-popup" data-layers="popup">
+    <div class="mcalc-popup__content mcalc-layers" data-popup="content">
+        <div class="mcalc-popup__close" data-popup="close">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.22566 4.81096C5.83514 4.42044 5.20197 4.42044 4.81145 4.81096C4.42092 5.20148 4.42092 5.83465 4.81145 6.22517L10.5862 11.9999L4.81151 17.7746C4.42098 18.1651 4.42098 18.7983 4.81151 19.1888C5.20203 19.5793 5.8352 19.5793 6.22572 19.1888L12.0004 13.4141L17.7751 19.1888C18.1656 19.5793 18.7988 19.5793 19.1893 19.1888C19.5798 18.7983 19.5798 18.1651 19.1893 17.7746L13.4146 11.9999L19.1893 6.22517C19.5799 5.83465 19.5799 5.20148 19.1893 4.81096C18.7988 4.42044 18.1657 4.42044 17.7751 4.81096L12.0004 10.5857L6.22566 4.81096Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="mcalc-layers__title">ВЫБОР МАТЕРИАЛА</div>
+        <div class="mcalc-layers__desc">Некоторые материалы представлены плитами фиксированной толщины. Например, ECO-Latex — только двух-сантиметровой.</div>
+        <div class="mcalc-layers__cols" data-layers="list">
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="script.js"></script>
+</body>
+</html>
